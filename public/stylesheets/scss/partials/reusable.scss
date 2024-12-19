@@ -1,0 +1,234 @@
+.underline-animation {
+    width: fit-content;
+    &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-repeat: repeat-x;
+        background-size: 8px 4px;
+        background-position: 0px 0px;
+        padding: 0px;
+        transition: background-position 2s;
+        left: 0;
+        bottom: 0;
+        background-image: linear-gradient(90deg, $lightmodeFade 50%, transparent 50%), linear-gradient(90deg, $lightmodeFade 50%, transparent 50%);
+        @media (prefers-color-scheme: dark) {
+            background-image: linear-gradient(90deg, $darkmodeFade 50%, transparent 50%), linear-gradient(90deg, $darkmodeFade 50%, transparent 50%);
+        }                 
+        @media only screen and (min-width: $mobile) {
+            transition: background-position 2s ease-in-out;
+        }
+    }                   
+    @media only screen and (min-width: $mobile) {     
+        &:hover {
+            &:after {   
+                background-position: 40px 0px;
+                background-image: linear-gradient(90deg, $lightmodeText 50%, transparent 50%), linear-gradient(90deg, $lightmodeText 50%, transparent 50%);
+                @media (prefers-color-scheme: dark) {
+                    background-image: linear-gradient(90deg, $darkmodeText 50%, transparent 50%), linear-gradient(90deg, $darkmodeText 50%, transparent 50%);
+                }           
+            }
+        }
+    }
+}
+
+.row {
+    padding-left: 20px;
+    padding-right: 20px;
+    @media only screen and (min-width: $landscapeTablet) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media only screen and (min-width: $desktop) {
+        padding-left: calc(((100% - 1540px) / 2));
+        padding-right: calc(((100% - 1540px) / 2));
+    }
+}
+
+.padded-top {
+    padding-top: 30px;
+    @media only screen and (min-width: $landscapeTablet) {
+        padding-top: 60px;
+    }
+}
+.padded-bottom {
+    padding-bottom: 30px;
+    @media only screen and (min-width: $landscapeTablet) {
+        padding-bottom: 60px;
+    }
+}
+
+.col {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    .two-parts {
+        width: 100%;
+        @media only screen and (min-width: $mobile) {
+            width: calc((100% / 2) - 20px);
+            &:first-child {
+                padding-right: 40px;
+            }
+        }
+    }
+    .three-col {
+        width: 100%;
+        @media only screen and (min-width: $mobile) {
+            padding-right: 40px;
+            width: calc((100% / 2) - 20px);
+            &:last-child {
+                padding-right: 0px;
+                width: 100%;
+            }
+        }
+        @media only screen and (min-width: $landscapeTablet) {
+            width: calc((100% / 3) - 20px);
+            &:last-child {
+                width: calc((100% / 3) - 20px);
+            }
+        }
+
+    }
+    .four-col {
+        width: 100%;
+        @media only screen and (min-width: $mobile) {
+            padding-right: 40px;
+            width: calc((100% / 2) - 20px);
+            &:last-child {
+                padding-right: 0px;
+            }
+        }
+        @media only screen and (min-width: $landscapeTablet) {
+            width: calc((100% / 4) - 20px);
+        }
+    }
+}
+
+.btn {
+    border-radius: 50px;
+    background-color: $greenColor;
+    color: $lightmodeText;
+    position: relative;
+    padding: 10px 20px 10px 20px;
+    font-weight: 500;
+    font-size: 1.14em;
+    @media only screen and (min-width: $mobile) {
+        transition: $transition;
+        &:hover {
+            background-color: $lighthover;
+            @media (prefers-color-scheme: dark) {
+                background-color: $darkhover;
+                color: white;
+                &::before {
+                    filter: brightness(0) invert(1);  
+                }
+            }
+        }
+    }
+}
+
+.flex-row {
+    display: flex !important;
+    flex-flow: column !important;
+    align-items: start;
+    @media only screen and (min-width: $mobile) {
+        flex-flow: row !important;
+        align-items: center;
+    }
+}
+
+
+.flex-box-wrapper {  
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    @media only screen and (min-width: $smallerTablet) {
+        height: 650px; //i hate this but its only way it seems to work.
+    }
+    &.signup-form {
+        @media only screen and (min-width: $smallerTablet) {
+            height: 840px; //i hate this but its only way it seems to work.
+        }
+    }
+    .form-wrapper {
+        order: 2;
+        flex: 0 0 100%;
+        border-radius: 18px;
+        width: 100%;
+        padding: 30px 0px;
+        @media only screen and (min-width: $smallerTablet) {
+            order: 3;
+            padding: 30px;
+            width: 50%;
+        }
+    }
+    .top-item {
+        order: 1;
+        width: 100%;
+        @media only screen and (min-width: $smallerTablet) {
+            padding-right: 30px;
+            order: 1;
+            width: 50%;
+        }
+    }
+    .bottom-item {
+        order: 3;
+        flex: 3; 
+        width: 100%;
+        padding: 30px 0px;
+        @media only screen and (min-width: $smallerTablet) {    
+            min-height: 100px;
+            padding: 0px 30px 0px 0px;
+            order: 2;
+            width: 50%;
+        }
+    }
+}
+
+.large-head {
+    font-size: 4.2em;
+    font-family: $headerFont;
+    line-height: 1.2;
+}
+
+.tooltipitems {
+    &:after {
+        content: attr(data-tooltip);
+        position: absolute;
+        pointer-events: none;
+        top: calc(-100% - 25px);
+        right: 0px;
+        border-radius: 4px;
+        font-family: $bodyFont;
+        padding: 10px;
+        opacity: 0;
+        display: block;
+        z-index: 10;
+        font-size: 13px;
+        white-space: nowrap;           
+        background: $lightmodeFade;
+        color: $lightmodeText;
+        @media (prefers-color-scheme: dark) {
+            background: $darkmodeFade;
+            color: $darkmodeText;
+        }
+    }
+    &.warning-item {
+        &::after {
+            background-color: $error;
+            color: white;
+        }
+    }
+    &.passed-item {
+        &::after {
+            background-color: $success;
+            color: white;
+        }
+    }
+    &:hover {
+        &:after {
+            opacity: 1;
+        }
+    }
+}

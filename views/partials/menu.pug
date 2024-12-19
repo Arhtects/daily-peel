@@ -1,0 +1,34 @@
+header#header-main
+    section#main-wrapper
+        section#menu-wrapper-start
+            label(for='toggle-menu', data-flow="menu-toggle", aria-label="Show Menu")
+                input#toggle-menu(type='checkbox', aria-label="menu check box")
+                span
+                span
+                span
+            figure
+                span D
+                    span.ultrasmall aily 
+                span P
+                    span.ultrasmall eel
+            section#header-item-wrapper
+                div.input-wrapper
+                    input#search-input-item(type="text", data-flow="search-posts", aria-label="input text for searching", placeholder="What do you want to read?")
+                    button#search-peel(data-flow="ajax-search-true", data-is-easy-read="true", aria-label="search posts")
+                div.search-dropdown-wrapper(data-flow="ajax-result-list", data-is-easy-read="true")
+
+        section#menu-wrapper-end 
+            div#search-target(aria-label="search", data-flow="search-target")
+            if(typeof(username) == 'undefined' || typeof(username) == "")
+                a.underline-animation(href="./sign-up", data-flow="sign-up-message", aria-label="Sign Up")
+                    span Sign Up
+                a(href="./login", data-flow="login-message-sign", data-has-message-sign="true", aria-label="log in with banstand")
+                    span Log in
+            else 
+                a.notificationbell(href="./users/notifications", date-flow="notifications", data-user=`${username[0]}` data-notifcation-count="0")
+                    span.notificationdot
+                a.userdisplay(href="./users/profile", data-flow="profile", data-user=`${username[0]}`)
+                    if(typeof(username[1]) == 'undefined')
+                        img(src=`${username[2]}`, data-flow="profile picture", data-user=`${username[0]}`, alt=`${username[0]}`)
+                    else 
+                        span.gradientDefault(style=`background: ${username[3]}`, data-flow="Default Profile")
